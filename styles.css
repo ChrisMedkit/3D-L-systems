@@ -1,11 +1,35 @@
+/* Reset and global styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+.more-button {
+  display: inline-block;
+  background-color: #3d5c4a;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  border-radius: 8px;
+  margin: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+}
+
+.more-button:hover {
+  background-color: #4e6c5b;
+  transform: scale(1.05);
+}
+
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif; /* Keep DM Sans as the default font for body */
   background: #181818;
   color: white;
   overflow: hidden;
@@ -62,7 +86,7 @@ body {
   width: 40%;
   color: white;
   padding: 20px;
-  text-align: center;              /* Center-align the text */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,21 +100,46 @@ body {
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5em;
 }
+
 .hero--text h2 {
   font-size: 2rem;
   background: linear-gradient(90deg, #6ca378, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
 }
 
-.hero--text p {
-  font-size: 1.2rem;
+/* Update description and parameters styles */
+.description, .parameters {
+  opacity: 0;
+  font-family: 'Times New Roman', Times, serif; /* Set Times New Roman */
+  transition: opacity 0.4s ease-in-out;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  text-align: left;
+  max-width: 500px;
 }
-.hero--text p2 {
-  font-size: 1rem;
+.parameters {
+  font-family: 'Times New Roman', Times, serif;
+}
+.description.visible, .parameters.visible {
+  opacity: 1;
 }
 
+#plant-description {
+  max-width: 300px;
+  text-align: left; /* Left-align the description */
+  margin-bottom: 1rem; /* Add space between description and parameters */
+}
+
+.parameters {
+  font-family: 'Times New Roman', Times, serif;
+  color: #b2f5ba;
+  white-space: pre-wrap;
+  text-align: left; /* Left-align parameters */
+  margin-bottom: 1rem; /* Space below the parameters */
+}
+
+/* Model viewer */
 .hero--model {
   width: 55%;
   height: 80vh;
@@ -102,19 +151,20 @@ body {
   padding: 10px;
 }
 
-
 model-viewer {
   width: 100%;
   height: 100%;
   border-radius: 12px;
 }
+
+/* Dropdown styles */
 .model-dropdown {
   margin-top: 20px;
   background-color: rgba(24, 24, 24, 0.9);
   padding: 10px 15px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(96, 123, 107, 0.3);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   color: white;
   text-align: center;
 }

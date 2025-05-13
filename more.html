@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More L-System Plants</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #121212;
+      color: #e0fbe2;
+      margin: 0;
+      padding: 2rem;
+      overflow-y: scroll;
+    }
+
+    h1, h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .content p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .back-button {
+      display: inline-block;
+      background-color: #3d5c4a;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none;
+      border-radius: 8px;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1000;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .back-button:hover {
+      background-color: #4d6456;
+      transform: scale(1.05);
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 5rem auto 2rem;
+      padding: 1rem;
+      background-color: #1d1d1d;
+      border-radius: 10px;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .sources {
+      margin-top: 2rem;
+    }
+
+    .sources ul {
+      padding-left: 1.2rem;
+    }
+
+    .sources li {
+      margin-bottom: 0.6rem;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .sources a {
+      color: #8ef7a0;
+      text-decoration: underline;
+    }
+
+    .sources a:hover {
+      color: #b2f5ba;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-button">Back to Home</a>
+
+  <div class="content">
+    <h1>More L-System Plant Info</h1>
+    <p>
+        Our 3D L-system add-on is a Blender add-on that procedurally creates 3D plant-like structures using L-systems and a 3D implementation turtle graphics. The user can define the axiom (starting string), a set of variables (symbols that cause forward drawing movement like F, A, B), and constants (symbols that perform transformations or control branching but do not draw). The constants include: + and - for rotating (left/right turns around the Z-axis), & and ^ for more movement  (tilts up/down around the X-axis), \ and / for rolling (rotations around the Y-axis), | to spin 180° around the Z-axis, and [ and ] to use as grouping symbols for the turtle’s position and orientation, this lets us branch like tree limbs.
+</p>
+       <p>The rewrite rules for F, A, and B construct how the symbols expand with each iteration, allowing increasingly complex structures. The angle sets the rotation amount for each turning symbol, step length defines how far the turtle moves forward per drawing symbol, and bevel depth controls the thickness of the resulting 3D curve. When the user clicks “Generate L-System,” the add-on recursively rewrites the axiom using the rules, then interprets the resulting string using 3D turtle logic. It tracks movement with a stack for branching, builds separate polylines for each branch, and generates a Blender curve object with beveled splines representing the full structure. The user interface in the 3D View sidebar allows easy control of all parameters, making it ideal for designing trees, vines, fractals, and organic forms procedurally.
+    </p>
+
+    <div class="sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://modelviewer.dev/" target="_blank">https://modelviewer.dev/</a></li>
+        <li><a href="https://paulbourke.net/fractals/lsys/" target="_blank">https://paulbourke.net/fractals/lsys/</a></li>
+        <li><a href="https://blender.stackexchange.com/questions/252083/how-to-put-buttons-sliders-ect-in-the-n-panel-with-an-addon" target="_blank">https://blender.stackexchange.com/...addon</a></li>
+        <li><a href="https://www.youtube.com/watch?v=dm5T5aOIO8Y" target="_blank">https://www.youtube.com/watch?v=dm5T5aOIO8Y</a></li>
+        <li><a href="https://kevs3d.co.uk/dev/lsystems/" target="_blank">https://kevs3d.co.uk/dev/lsystems/</a></li>
+        <li><a href="https://en.wikipedia.org/wiki/L-system" target="_blank">https://en.wikipedia.org/wiki/L-system</a></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -7,6 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.9.0/dist/model-viewer.js"></script>
+
+  </style>
 </head>
 <body>
   <div class="loader">
@@ -15,30 +17,34 @@
       <div class="progress-bar"></div>
     </div>
   </div>
+  <a href="more.html" class="more-button" id="more-btn" style="display: none;">More</a>
+
 
   <section class="section hero">
     <div class="hero--container">
       <div class="hero--text">
         <h1>L-System Plants</h1>
         <h2>Fractal Nature</h2>
-        <p>Control iterations and view in 3D.</p>
+        <p>View fractals in 2D and 3D.</p>
         <div class="model-dropdown">
           <label for="plant-select">Choose a plant:</label>
           <select id="plant-select">
-            <option value="3D_Model_test.glb">Default Plant</option>
-            <option value="plant2.glb">Plant Type 2</option>
-            <option value="plant3.glb">Plant Type 3</option>
-            <option value="plant3.glb">Plant Type 4</option>
-            <option value="plant3.glb">Plant Type 5</option>
-            <option value="plant3.glb">Plant Type 6</option>
+            <option value="3D_Model_test.glb">Default</option>
+            <option value="Sticks_by_Paul_Bourke.glb">Sticks</option>
+            <option value="Simple_fractal_tree.glb">Simple Tree</option>
+            <option value="Oak_tree.glb">Oak Tree</option>
+            <option value="Pine_tree.glb">Pine Tree</option>
+            <option value="wheat.glb">Wheat</option>
+            <option value="Curvy_tree.glb">Cherry Blossom</option>
           </select>
-          
         </div>
-        <p>
-          Description</p>
+
+        <p id="plant-description" class="description visible">
+          This is the default L-system plant model.
+        </p>
+        <pre id="plant-parameters" class="parameters visible"></pre>
       </div>
 
-      
       <div class="hero--model">
         <model-viewer 
           src="3D_Model_test.glb" 
@@ -61,13 +67,82 @@
         progressBar.style.transition = 'width 2s linear';
         progressBar.style.width = '100%';
       }, 5);
+      setTimeout(() => {
+  loader.style.opacity = '0';
+  loader.style.pointerEvents = 'none';
+  document.getElementById('more-btn').style.display = 'inline-block'; // <-- Show the button
+}, 2000);
 
       setTimeout(() => {
         loader.style.opacity = '0';
         loader.style.pointerEvents = 'none';
       }, 2000);
     });
+
+    const descriptions = {
+      "3D_Model_test.glb": "This is our default L-system plant model. (2D)",
+      "Sticks_by_Paul_Bourke.glb": "'L-System Sticks' by Paul Bourke generates a fractal structure using recursive branching, mimicking natural plant growth. Its rule set creates intricate, tree-like patterns with an angular divergence. (2D)",
+      "Simple_fractal_tree.glb": "This fractal tree starts from a single trunk and branches recursively in upward and downward directions. The rule set and 20° angle create a balanced, natural-looking tree structure. (2D)",
+      "Oak_tree.glb": "This L-system generates an oak-like plant with dense, recursive branching, starting from a single point, “A.” The rules create spiraling branches with changes in angle, resembling tree branches. After 5 iterations and a 22.5° angle, the result is a tall, oak-like plant with foliage spreading in all directions. (3D)",
+      "Pine_tree.glb": "This L-system creates a detailed pine-like tree with recursive branching and layered symmetry, expanding from a single stem, A, into a densely packed structure with alternating angular turns at each node. Using the rule for A to generate four directional branches and the F rule for elongating the trunk, along with 3D turtle commands for rotation and orientation, the plant forms a spiraling shape, ideal for conifer forest applications. (3D)",
+      "wheat.glb": "This L-system generates a simple wheat-like plant with recursive branching that mimics the growth of wheat stalks. Starting from a single stem (A), the plant branches out with alternating left and right turns, creating a symmetrical structure.",
+      "Curvy_tree.glb": "This L-system generates a cherry blossom-like plant with intricate branching and a delicate, layered structure. Starting from a single stem (A), the plant creates recursive branches with alternating angular turns and branching patterns, resembling the spread of cherry blossoms.",
+  };
+
+    const parameters = {
+      "3D_Model_test.glb": "",
+      "Sticks_by_Paul_Bourke.glb": `Axiom: X  
+F → FF  
+X → F[+X]F[-X]+X  
+Angle: 20°`,
+
+"Simple_fractal_tree.glb": `Axiom: A  
+F → FF  
+A → F[&A]F[^A]A  
+Angle: 20°`,
+
+"Oak_tree.glb": `Axiom: A  
+F → FF  
+A → F[&[+A]-A]F[^[-A]+A]A]
+Angle: 20°`,
+
+"Pine_tree.glb": `Axiom: A  
+F → FF  
+A → F[+&A]F[-^A]F[\A]F[/A]A
+Angle: 30°`,
+
+"wheat.glb": `Axiom: A  
+F → F 
+A →  F[+A]F[-A]
+Angle: 22.5°`,
+
+"Curvy_tree.glb": `Axiom: A  
+F → F 
+A → F[+B][-B]^F
+B → F[^A]/F
+Angle: 35°`,
+    };
     
+
+    const select = document.getElementById('plant-select');
+    const modelViewer = document.querySelector('.hero--model model-viewer');
+    const description = document.getElementById('plant-description');
+    const paramBox = document.getElementById('plant-parameters');
+
+    select.addEventListener('change', function () {
+      const selectedValue = this.value;
+      modelViewer.src = selectedValue;
+
+      description.classList.remove('visible');
+      paramBox.classList.remove('visible');
+
+      setTimeout(() => {
+        description.textContent = descriptions[selectedValue] || "No description available.";
+        paramBox.textContent = parameters[selectedValue] || "";
+        description.classList.add('visible');
+        paramBox.classList.add('visible');
+      }, 200);
+    });
   </script>
 </body>
 </html>
