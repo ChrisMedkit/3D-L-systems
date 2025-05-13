@@ -2,7 +2,7 @@
 # addon meta data info
 bl_info = {
     "name": "Custom L-System Generator",
-    "author": "Chris M",
+    "author": "Chris M, Luisa Eng",
     "version": (1, 0),
     "blender": (4, 4, 0),
     "description": "Generates 3D fractal structures using an L-system with stack-based branching and full 3D turtle rotations, output as beveled curves.",
